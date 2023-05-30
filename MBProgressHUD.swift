@@ -83,7 +83,7 @@ public class MBProgressHUDSwift: UIView {
      * Removes the HUD from its parent view when hidden.
      * Defaults to NO.
      */
-    var removeFromSuperViewOnHide   = false
+    var removeFromSuperViewOnHide = false
     /*
      * graceTime is the time (in seconds) that the invoked method may be run without
      * showing the HUD. If the task finishes before the grace time runs out, the HUD will
@@ -91,22 +91,22 @@ public class MBProgressHUDSwift: UIView {
      * This may be used to prevent HUD display for very short tasks.
      * Defaults to 0 (no grace time).
      */
-    var graceTime: TimeInterval      = 0.0
+    var graceTime: TimeInterval = 0.0
     /**
      * The minimum time (in seconds) that the HUD is shown.
      * This avoids the problem of the HUD being shown and than instantly hidden.
      * Defaults to 0 (no minimum show time).
      */
-    var minShowTime: TimeInterval    = 0.0
+    var minShowTime: TimeInterval = 0.0
     /**
      * A button that is placed below the labels. Visible only if a target / action is added.
      */
-    var button: UIButton             = MBProgressHUDRoundedButton(type: .custom)
+    var button: UIButton = MBProgressHUDRoundedButton(type: .custom)
     weak var delegate: MBProgressHUDDelegate?
     var completion: MBProgressHUDCompletionBlock?
-    var label                       = UILabel()
-    var detailsLabel                = UILabel()
-    var opacity: CGFloat             = 1.0
+    var label = UILabel()
+    var detailsLabel = UILabel()
+    var opacity: CGFloat = 1.0
     var margin: CGFloat = 20.0 {
         didSet {
             dispatchOnMainThread {
@@ -114,16 +114,19 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     var borderWidth = CGFloat(0) {
         didSet {
             bezelView.layer.borderWidth = borderWidth
         }
     }
+
     var borderColor = UIColor.black {
         didSet {
             bezelView.layer.borderColor = borderColor.cgColor
         }
     }
+
     var square = false {
         didSet {
             dispatchOnMainThread {
@@ -143,6 +146,7 @@ public class MBProgressHUDSwift: UIView {
                                                  attribute: .notAnAttribute, multiplier: 1, constant: height))
                 view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width))
             }
+
             if mode == .MBProgressHUDModeCustomView {
                 dispatchOnMainThread {
                     self.updateIndicators()
@@ -152,6 +156,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     var labelAboveIndicator = false {
         didSet {
             dispatchOnMainThread {
@@ -161,16 +166,19 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     var contentColor = UIColor(white: 0.0, alpha: 0.7) {
         didSet {
             updateViews(forColor: contentColor)
         }
     }
+
     var activityIndicatorColor: UIColor? {
         didSet {
             updateViews(forColor: contentColor)
         }
     }
+
     var mode: MBProgressHUDMode {
         didSet {
             dispatchOnMainThread {
@@ -178,6 +186,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     var progress: CGFloat {
         didSet {
             if mode == .MBProgressHUDModeDeterminate {
@@ -190,6 +199,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     var offset = CGPoint.zero {
         didSet {
             dispatchOnMainThread {
@@ -197,6 +207,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     var progressObjectDisplayLink: CADisplayLink? {
         willSet {
             if progressObjectDisplayLink != newValue {
@@ -207,6 +218,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     /**
      * The NSProgress object feeding the progress information to the progress indicator.
      */
@@ -215,6 +227,7 @@ public class MBProgressHUDSwift: UIView {
             setProgressDisplayLink(enabled: true)
         }
     }
+
     var defaultMotionEffectsEnabled = true {
         didSet {
             dispatchOnMainThread {
@@ -222,6 +235,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     var minSize = CGSize.zero {
         didSet {
             dispatchOnMainThread {
@@ -247,12 +261,12 @@ public class MBProgressHUDSwift: UIView {
     private var paddingConstraints  = [NSLayoutConstraint]()
     private var useAnimation        = false
 
-    // MARK: -- Constants
+    // MARK: - - Constants
     private let MBPadding: CGFloat               = 4.0
     private let MBLabelFontSize: CGFloat         = 16.0
     private let MBDetailLabelFontSize: CGFloat   = 12.0
 
-    // MARK: -- Static Class methods
+    // MARK: - - Static Class methods
     static func showHUDAddedTo(_ view: UIView, animated: Bool = true) -> MBProgressHUD {
         /**
          * Creates a new HUD, adds it to provided view and shows it. The counterpart to this method is hideHUDForView:animated:.
@@ -273,6 +287,7 @@ public class MBProgressHUDSwift: UIView {
         hud.show(animated: animated)
         return hud
     }
+
     static func hiddenHUDAddedTo(_ view: UIView) -> MBProgressHUD {
         /**
          * Creates a new HUD, adds it to provided view and does NOT show it. The counterpart to this method is hideHUDForView:animated:.
@@ -313,8 +328,10 @@ public class MBProgressHUDSwift: UIView {
             hud!.hide(animated: animated)
             return true
         }
+
         return false
     }
+
     static func HUDFor(_ view: UIView) -> MBProgressHUD? {
         /**
          * Finds the top-most HUD subview and returns it.
@@ -327,10 +344,11 @@ public class MBProgressHUDSwift: UIView {
                 return hud
             }
         }
+
         return nil
     }
 
-    // MARK: -- Lifecycle methods
+    // MARK: - - Lifecycle methods
     required init?(coder aDecoder: NSCoder) {
         // Set default values for properties
         mode                = .MBProgressHUDModeIndeterminate
@@ -341,6 +359,7 @@ public class MBProgressHUDSwift: UIView {
         // Set some other properties now that 'super' has run.
         commonInit()
     }
+
     override init(frame: CGRect) {
         // Set default values for properties
         mode                = .MBProgressHUDModeIndeterminate
@@ -357,6 +376,7 @@ public class MBProgressHUDSwift: UIView {
         NotificationCenter.default.removeObserver(self)
         super.removeFromSuperview()
     }
+
     convenience init(view: UIView) {
         /**
          * A convenience constructor that initializes the HUD with the view's bounds. Calls the designated constructor with
@@ -368,16 +388,18 @@ public class MBProgressHUDSwift: UIView {
         self.init(frame: view.bounds)
         // We need to take care of rotation ourselves if we're adding the HUD to a window
     }
+
     override
     public func didMoveToSuperview() {
         updateForCurrentOrientation(animated: false)
         super.didMoveToSuperview()
     }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: -- Showing and hiding
+    // MARK: - - Showing and hiding
     func show(animated: Bool = true) {
         /**
          * Displays the HUD.
@@ -407,6 +429,7 @@ public class MBProgressHUDSwift: UIView {
             showUsingAnimation(useAnimation)
         }
     }
+
     func hide(animated: Bool = true) {
         /**
          * Hides the HUD. This still calls the hudWasHidden: delegate. This is the counterpart of the show: method. Use it to
@@ -437,6 +460,7 @@ public class MBProgressHUDSwift: UIView {
         // ... otherwise hide the HUD immediately
         hideUsingAnimation(useAnimation)
     }
+
     func hide(animated: Bool = true, after: TimeInterval) {
         /**
          * Hides the HUD after a delay. This still calls the hudWasHidden: delegate. This is the counterpart of the show: method. Use it to
@@ -453,16 +477,18 @@ public class MBProgressHUDSwift: UIView {
         })
     }
 
-    // MARK: -- private show & hide operations
+    // MARK: - - private show & hide operations
     @objc private func handleGraceTimer(theTimer: Timer) {
         // Show the HUD only if the task is still running
         if !isFinished {
             showUsingAnimation(useAnimation)
         }
     }
+
     @objc private func handleMinShowTimer(theTimer: Timer) {
         hideUsingAnimation(useAnimation)
     }
+
     private func showUsingAnimation(_ animated: Bool) {
 
         bezelView.layer.removeAllAnimations()
@@ -479,6 +505,7 @@ public class MBProgressHUDSwift: UIView {
             backgroundView.alpha = 1
         }
     }
+
     private func hideUsingAnimation(_ animated: Bool) {
         if animated && showStarted != nil {
             showStarted = nil
@@ -492,6 +519,7 @@ public class MBProgressHUDSwift: UIView {
             self.done()
         }
     }
+
     private func animate(in show: Bool, type: MBProgressHUDAnimation, completion: ((Bool) -> Void)?) {
         // Automatically determine the correct zoom animation type
 
@@ -530,6 +558,7 @@ public class MBProgressHUDSwift: UIView {
                        animations: animations,
                        completion: completion)
     }
+
     private func done() {
         hideDelayedTimer?.invalidate()
         setProgressDisplayLink(enabled: false)
@@ -549,7 +578,7 @@ public class MBProgressHUDSwift: UIView {
         }
     }
 
-    // MARK: -- Layout
+    // MARK: - - Layout
     override
     public func updateConstraints() {
         let metrics             = ["margin": margin] as [String: CGFloat]
@@ -652,6 +681,7 @@ public class MBProgressHUDSwift: UIView {
         bezelView.addConstraints(bezelConstraints)
         super.updateConstraints()
     }
+
     override
     public func layoutSubviews() {
         // There is no need to update constraints if they are going to
@@ -663,6 +693,7 @@ public class MBProgressHUDSwift: UIView {
         }
         super.layoutSubviews()
     }
+
     func updatePaddingConstraints() {
         //
         // Set padding dynamically, depending on whether the view is visible or not
@@ -678,13 +709,14 @@ public class MBProgressHUDSwift: UIView {
             hasVisibleAncestors = hasVisibleAncestors||secondVisible
         }
     }
+
     func applyPriority(priority: UILayoutPriority, toConstraints: [NSLayoutConstraint]) {
         for constraint in constraints {
             constraint.priority = priority
         }
     }
 
-    // MARK: -- Progress
+    // MARK: - - Progress
     private func setProgressDisplayLink(enabled: Bool) {
         // We're using CADisplayLink, because NSProgress can change very quickly and observing it may starve the main thread,
         // so we're refreshing the progress only every frame draw
@@ -697,16 +729,19 @@ public class MBProgressHUDSwift: UIView {
             self.progressObjectDisplayLink = nil
         }
     }
+
     @objc private func updateProgressFromProgressObject() {
         progress = CGFloat((progressObject?.fractionCompleted)!)
     }
+
     //
-    // MARK: -- Manual orientation change
+    // MARK: - - Manual orientation change
     @objc private func statusBarOrientationDidChange(notification: NSNotification) {
         if self.superview != nil {
             updateForCurrentOrientation()
         }
     }
+
     private func updateForCurrentOrientation(animated: Bool = true) {
         // Stay in sync with the superview
         if let superView = self.superview {
@@ -722,6 +757,7 @@ public class MBProgressHUDSwift: UIView {
             DispatchQueue.main.async(execute: execute)
         }
     }
+
     private func setupViews() {
         let defaultColor = contentColor
 
@@ -770,6 +806,7 @@ public class MBProgressHUDSwift: UIView {
         bottomSpacer.isHidden = true
         bezelView.addSubview(bottomSpacer)
     }
+
     private func updateViews(forColor: UIColor) {
         label.textColor = forColor
         detailsLabel.textColor = forColor
@@ -845,6 +882,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     private func updateBezelMotionEffects() {
         let selector = NSSelectorFromString("addMotionEffect:" )
         if bezelView.responds(to: selector) {
@@ -870,6 +908,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     private func updateIndicators() {
 
         let isActivityIndicator = indicator is UIActivityIndicatorView
@@ -934,6 +973,7 @@ public class MBProgressHUDSwift: UIView {
         updateViews(forColor: contentColor)
         setNeedsUpdateConstraints()
     }
+
     private func commonInit() {
 
         autoresizingMask   = [.flexibleTopMargin,
@@ -956,7 +996,7 @@ public class MBProgressHUDSwift: UIView {
         updateViews(forColor: contentColor)
     }
 
-    // MARK: -- Utility sub-classes
+    // MARK: - - Utility sub-classes
     class MBRoundProgressView: UIView {
         var progress: CGFloat {
             didSet {
@@ -983,7 +1023,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
 
-        // MARK: --  Lifecycle
+        // MARK: - -  Lifecycle
         override init(frame: CGRect) {
             self.progress               = 0
             self.progressTintColor      = .white
@@ -1007,7 +1047,7 @@ public class MBProgressHUDSwift: UIView {
             isOpaque                    = false
         }
 
-        // MARK: -- Drawing
+        // MARK: - - Drawing
         override func draw(_ rect: CGRect) {
 
             let center = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -1060,6 +1100,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
     }
+
     class MBBarProgressView: UIView {
         /**
          * Progress (0.0 to 1.0)
@@ -1069,6 +1110,7 @@ public class MBProgressHUDSwift: UIView {
                 setNeedsDisplay()
             }
         }
+
         /**
          * Bar border line color. Defaults to .white
          */
@@ -1077,6 +1119,7 @@ public class MBProgressHUDSwift: UIView {
                 setNeedsDisplay()
             }
         }
+
         /**
          * Bar background color. Defaults to .clear
          */
@@ -1085,6 +1128,7 @@ public class MBProgressHUDSwift: UIView {
                 setNeedsDisplay()
             }
         }
+
         /**
          * Bar progress color. Defaults to .white
          */
@@ -1094,7 +1138,7 @@ public class MBProgressHUDSwift: UIView {
             }
         }
 
-        // MARK: --  Lifecycle
+        // MARK: - -  Lifecycle
         override init(frame: CGRect) {
             self.lineColor                  = .white
             self.progressColor              = .white
@@ -1106,6 +1150,7 @@ public class MBProgressHUDSwift: UIView {
             backgroundColor                 = .clear
             isOpaque                        = false
         }
+
         required init?(coder aDecoder: NSCoder) {
             self.lineColor                  = .white
             self.progressColor              = .white
@@ -1121,6 +1166,7 @@ public class MBProgressHUDSwift: UIView {
         override var intrinsicContentSize: CGSize {
             return CGSize(width: 120, height: 10)
         }
+
         override func draw(_ rect: CGRect) {
             let context = UIGraphicsGetCurrentContext()
 
@@ -1227,8 +1273,10 @@ public class MBProgressHUDSwift: UIView {
                 }
             }
         }
+
         private var effectView: UIVisualEffectView
-        // MARK: --  Lifecycle
+
+        // MARK: - -  Lifecycle
         override init(frame: CGRect) {
             if kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0 {
                 color = UIColor(white: 0.8, alpha: 0.6)
@@ -1246,6 +1294,7 @@ public class MBProgressHUDSwift: UIView {
             backgroundColor = color
             layer.allowsGroupOpacity = false
         }
+
         required init?(coder aDecoder: NSCoder) {
             if kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0 {
                 color = UIColor(white: 0.8, alpha: 0.6)
@@ -1263,48 +1312,55 @@ public class MBProgressHUDSwift: UIView {
             backgroundColor = color
             layer.allowsGroupOpacity = false
         }
+
         override var intrinsicContentSize: CGSize {
             return CGSize.zero
         }
     }
+
     class MBProgressHUDRoundedButton: UIButton {
 
-        // MARK: -- Lifecycle
+        // MARK: - - Lifecycle
         override init(frame: CGRect) {
             super.init(frame: frame)
             layer.borderWidth = 1.0
         }
+
         required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
             layer.borderWidth = 1.0
         }
 
-        // MARK: -- Layout
+        // MARK: - - Layout
         override func layoutSubviews() {
             super.layoutSubviews()
             // Fully rounded corners
             self.layer.cornerRadius = ceil(self.bounds.height / 2)
         }
+
         override var intrinsicContentSize: CGSize {
             // Only show if we have associated control events
             if allControlEvents.rawValue == 0 {
                 return CGSize.zero
             }
+
             var size = super.intrinsicContentSize
             // Add some side padding
             size.width += 20
             return size
         }
 
-        // MARK: -- Color
+        // MARK: - - Color
         override func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
             super.setTitleColor(color, for: state)
             // Update related colors
             if isHighlighted {
                 isHighlighted = true
             }
+
             layer.borderColor = color?.cgColor
         }
+
         override var isHighlighted: Bool {
             didSet {
                 let baseColor = self.titleColor(for: .selected)
