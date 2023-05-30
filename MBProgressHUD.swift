@@ -2,13 +2,13 @@
 //  MBProgressHUD.swift
 //  Version 1.0
 //  Created by Matej Bukovinski on 2.4.09.
-//  Ported to swift by Stephen Orr on 6.15.17
+//  Ported to swift by Stephen Orr on 6.15.17 and Daniel Chick on 5.30.23
 //
 
 // This code is distributed under the terms and conditions of the MIT license.
 
 // Copyright © 2009-2016 Matej Bukovinski
-// Swift implementation copyright Stephen Orr
+// Swift implementation copyright Stephen Orr and Daniel Chick
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,10 @@
 
 import UIKit
 
-protocol MBProgressHUDDelegate: class {
-    func hudWasHidden(hud: MBProgressHUD) -> Void
+typealias MBProgressHUDCompletionBlock = () -> ()
+
+protocol MBProgressHUDDelegate: AnyObject {
+    func hudWasHidden(hud: MBProgressHUDSwift) -> Void
 }
 
 /**
@@ -45,11 +47,11 @@ protocol MBProgressHUDDelegate: class {
  * @attention MBProgressHUD is a UI class and should therefore only be accessed on the main thread.
  * @note Swift implementation drops support for pre-ios7 and deprecated features from the MBProgressHUD v1.0
  */
-class MBProgressHUD: UIView {
-    
-    typealias MBProgressHUDCompletionBlock = () -> ()
 
-    enum MBProgressHUDMode                  {
+//TODO: Temporary name until swift version is production ready
+public class MBProgressHUDSwift: UIView {
+
+    enum MBProgressHUDMode {
         /// UIActivityIndicatorView.
         case MBProgressHUDModeIndeterminate
         /// A round, pie-chart like, progress view.
@@ -63,7 +65,7 @@ class MBProgressHUD: UIView {
         /// Shows only labels.
         case MBProgressHUDModeText
     }
-    enum MBProgressHUDAnimation             {
+    enum MBProgressHUDAnimation {
         /// Opacity animation
         case MBProgressHUDAnimationFade
         /// Opacity + scale animation
@@ -74,7 +76,7 @@ class MBProgressHUD: UIView {
         case MBProgressHUDAnimationZoomIn
     }
     
-    static let shared = MBProgressHUD.hiddenHUDAddedTo(UIApplication.shared.keyWindow!)
+//    static let shared = MBProgressHUD.hiddenHUDAddedTo(UIApplication.shared.keyWindow!)
  
     var animationType:MBProgressHUDAnimation = .MBProgressHUDAnimationFade
     /**
@@ -195,12 +197,12 @@ class MBProgressHUD: UIView {
             }
         }
     }
-    var progressObjectDisplayLink:CADisplayLink? {
+    var progressObjectDisplayLink: CADisplayLink? {
         willSet {
             if (progressObjectDisplayLink != newValue) {
                 progressObjectDisplayLink?.invalidate()
-                if (newValue != nil) {
-                    newValue!.add(to: RunLoop.main, forMode: .defaultRunLoopMode)
+                if let newValue = newValue {
+                    newValue.add(to: .main, forMode: .default)
                 }
             }
         }
@@ -349,7 +351,9 @@ class MBProgressHUD: UIView {
         // Set some other properties now that 'super' has run.
         commonInit()
     }
-    override func removeFromSuperview()                                                             {
+
+    override
+    public func removeFromSuperview()                                                             {
         NotificationCenter.default.removeObserver(self)
         super.removeFromSuperview()
     }
@@ -364,7 +368,8 @@ class MBProgressHUD: UIView {
         self.init(frame: view.bounds)
         // We need to take care of rotation ourselves if we're adding the HUD to a window
     }
-    override func didMoveToSuperview()                                                              {
+    override
+    public func didMoveToSuperview()                                                              {
         updateForCurrentOrientation(animated: false)
         super.didMoveToSuperview()
     }
@@ -545,7 +550,8 @@ class MBProgressHUD: UIView {
     }
     
     // MARK -- Layout
-    override func updateConstraints()                                                               {
+    override
+    public func updateConstraints()                                                               {
         let metrics             = ["margin": margin] as [String: CGFloat]
         //
         // Remove existing constraints
@@ -565,7 +571,7 @@ class MBProgressHUD: UIView {
         centering.append(NSLayoutConstraint(item: bezelView, attribute: .centerY, relatedBy: .equal,
                                                        toItem: self, attribute: .centerY,
                                                        multiplier: 1, constant: offset.y))
-        applyPriority(priority: 998, toConstraints: centering)
+        applyPriority(priority: UILayoutPriority(rawValue: 998), toConstraints: centering)
         addConstraints(centering)
         //
         // Ensure minimum side margin is kept
@@ -585,7 +591,7 @@ class MBProgressHUD: UIView {
                                               attribute:.notAnAttribute, multiplier:1, constant: minSize.width))
             bezelSize.append(NSLayoutConstraint(item: bezelView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil,
                                                 attribute:.notAnAttribute, multiplier:1, constant: minSize.height))
-            applyPriority(priority: 997, toConstraints: bezelSize)
+            applyPriority(priority: UILayoutPriority(rawValue: 997), toConstraints: bezelSize)
             bezelConstraints.append(contentsOf: bezelSize)
         }
         //
@@ -594,7 +600,7 @@ class MBProgressHUD: UIView {
             let square = NSLayoutConstraint(item: bezelView, attribute: .height, relatedBy: .equal, toItem: bezelView,
                                             attribute: .width, multiplier: 1, constant: 0)
             
-            square.priority = 997
+            square.priority = UILayoutPriority(rawValue: 997)
             bezelConstraints.append(square)
         }
         
@@ -646,7 +652,8 @@ class MBProgressHUD: UIView {
         bezelView.addConstraints(bezelConstraints)
         super.updateConstraints()
     }
-    override func layoutSubviews()                                                                  {
+    override
+    public func layoutSubviews()                                                                  {
         // There is no need to update constraints if they are going to
         // be recreated in super.layoutSubviews() due to needsUpdateConstraints being set.
         // This also avoids an issue on iOS 8, where updatePaddingConstraints
@@ -750,8 +757,8 @@ class MBProgressHUD: UIView {
         
         for view in [label, detailsLabel, button] as [UIView] {
             view.translatesAutoresizingMaskIntoConstraints = false
-            view.setContentCompressionResistancePriority(998, for: .horizontal)
-            view.setContentCompressionResistancePriority(998, for: .vertical)
+            view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .horizontal)
+            view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .vertical)
             bezelView.addSubview(view)
         }
         
@@ -873,7 +880,7 @@ class MBProgressHUD: UIView {
             if (!isActivityIndicator) {
                 // Update to indeterminate indicator
                 indicator?.removeFromSuperview()
-                let activity = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+                let activity = UIActivityIndicatorView(style: .whiteLarge)
                 activity.startAnimating()
                 bezelView.addSubview(activity)
                 indicator = activity
@@ -922,8 +929,9 @@ class MBProgressHUD: UIView {
             _ = indicator?.perform(selector, with: progress)
         }
     
-        indicator?.setContentCompressionResistancePriority(998, for: .horizontal)
-        indicator?.setContentCompressionResistancePriority(998, for: .vertical)
+        
+        indicator?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .horizontal)
+        indicator?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .vertical)
         
         updateViews(forColor: contentColor)
         setNeedsUpdateConstraints()
@@ -943,7 +951,7 @@ class MBProgressHUD: UIView {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(statusBarOrientationDidChange),
-                                               name: .UIDeviceOrientationDidChange,
+                                               name: UIDevice.orientationDidChangeNotification,
                                                object: nil)
         setupViews()
         updateIndicators()
@@ -1205,6 +1213,7 @@ class MBProgressHUD: UIView {
             }
         }
     }
+
     class MBBackgroundView : UIView                                                                 {
     
         /**
@@ -1290,7 +1299,7 @@ class MBProgressHUD: UIView {
         }
         
         // MARK -- Color
-        override func setTitleColor(_ color: UIColor?, for state: UIControlState) {
+        override func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
             super.setTitleColor(color, for: state)
             // Update related colors
             if isHighlighted {
