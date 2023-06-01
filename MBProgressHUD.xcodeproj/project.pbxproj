@@ -21,6 +21,7 @@
 		BD4774732A2933FA0077D261 /* MBBarProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774712A2933FA0077D261 /* MBBarProgressView.swift */; };
 		BD4774752A29343D0077D261 /* MBRoundProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774742A29343D0077D261 /* MBRoundProgressView.swift */; };
 		BD4774762A29343D0077D261 /* MBRoundProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774742A29343D0077D261 /* MBRoundProgressView.swift */; };
+		BD4774772A2934EC0077D261 /* MBProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */; };
 		D286A74D1518C70F00E13FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D286A74C1518C70F00E13FB8 /* Foundation.framework */; };
 		D286A7531518C70F00E13FB8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D286A7521518C70F00E13FB8 /* MBProgressHUD.m */; };
 		D286A75E1518C89600E13FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D286A75D1518C89600E13FB8 /* UIKit.framework */; };
@@ -287,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD47746D2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */,
+				BD4774772A2934EC0077D261 /* MBProgressHUD.swift in Sources */,
 				1777D3E81D757B6E0037C7F1 /* MBProgressHUD.m in Sources */,
 				BD4774732A2933FA0077D261 /* MBBarProgressView.swift in Sources */,
 				BD4774762A29343D0077D261 /* MBRoundProgressView.swift in Sources */,

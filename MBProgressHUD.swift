@@ -402,7 +402,7 @@ public class MBProgressHUDSwift: UIView {
     }
 
     // MARK: - - Showing and hiding
-    func show(animated: Bool = true) {
+    public func show(animated: Bool = true) {
         /**
          * Displays the HUD.
          *
@@ -432,7 +432,7 @@ public class MBProgressHUDSwift: UIView {
         }
     }
 
-    func hide(animated: Bool = true) {
+    public func hide(animated: Bool = true) {
         /**
          * Hides the HUD. This still calls the hudWasHidden: delegate. This is the counterpart of the show: method. Use it to
          * hide the HUD when your task completes.
@@ -463,7 +463,7 @@ public class MBProgressHUDSwift: UIView {
         hideUsingAnimation(useAnimation)
     }
 
-    func hide(animated: Bool = true, after: TimeInterval) {
+    public func hide(animated: Bool = true, after: TimeInterval) {
         /**
          * Hides the HUD after a delay. This still calls the hudWasHidden: delegate. This is the counterpart of the show: method. Use it to
          * hide the HUD when your task completes.
@@ -997,7 +997,4 @@ public class MBProgressHUDSwift: UIView {
         updateIndicators()
         updateViews(forColor: contentColor)
     }
-
-    // MARK: - - Utility sub-classes
-    
 }
