@@ -15,8 +15,8 @@ class MBBackgroundView: UIView {
      */
     var color: UIColor {
         didSet {
-            self.backgroundColor = self.color
-            if self.color == .clear {
+            backgroundColor = color
+            if color == .clear {
                 effectView.removeFromSuperview()
             } else {
                 addSubview(effectView)

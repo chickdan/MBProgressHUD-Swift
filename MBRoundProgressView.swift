@@ -36,10 +36,10 @@ class MBRoundProgressView: UIView {
 
     // MARK: - -  Lifecycle
     override init(frame: CGRect) {
-        self.progress = 0
-        self.progressTintColor = .white
-        self.backgroundTintColor = UIColor.white.withAlphaComponent(0.1)
-        self.isAnnular = false
+        progress = 0
+        progressTintColor = .white
+        backgroundTintColor = UIColor.white.withAlphaComponent(0.1)
+        isAnnular = false
 
         super.init(frame: frame)
 
@@ -47,10 +47,10 @@ class MBRoundProgressView: UIView {
         isOpaque = false
     }
     required init?(coder aDecoder: NSCoder) {
-        self.progress  = 0
-        self.progressTintColor = .white
-        self.backgroundTintColor = UIColor.white.withAlphaComponent(0.1)
-        self.isAnnular = false
+        progress  = 0
+        progressTintColor = .white
+        backgroundTintColor = UIColor.white.withAlphaComponent(0.1)
+        isAnnular = false
 
         super.init(coder: aDecoder)
 

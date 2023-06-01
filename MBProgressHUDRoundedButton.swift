@@ -26,7 +26,7 @@ public class MBProgressHUDRoundedButton: UIButton {
     public func layoutSubviews() {
         super.layoutSubviews()
         // Fully rounded corners
-        self.layer.cornerRadius = ceil(self.bounds.height / 2)
+        layer.cornerRadius = ceil(bounds.height / 2)
     }
 
     override

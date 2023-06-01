@@ -107,7 +107,7 @@ public class MBProgressHUDSwift: UIView {
     public var completion: MBProgressHUDCompletionBlock?
     public var label = UILabel()
     public var detailsLabel = UILabel()
-    public  var opacity: CGFloat = 1.0
+    public var opacity: CGFloat = 1.0
     public  var margin: CGFloat = 20.0 {
         didSet {
             dispatchOnMainThread {
@@ -518,7 +518,7 @@ public class MBProgressHUDSwift: UIView {
             showStarted = nil
             bezelView.alpha = 0.0
             backgroundView.alpha = 1.0
-            self.done()
+            done()
         }
     }
 
@@ -686,7 +686,7 @@ public class MBProgressHUDSwift: UIView {
         // This also avoids an issue on iOS 8, where updatePaddingConstraints
         // would trigger a zombie object access.
         if !needsUpdateConstraints() {
-            self.updatePaddingConstraints()
+            updatePaddingConstraints()
         }
         super.layoutSubviews()
     }
@@ -719,11 +719,11 @@ public class MBProgressHUDSwift: UIView {
         // so we're refreshing the progress only every frame draw
         if enabled && progressObject != nil {
             // Only create if not already active.
-            if self.progressObjectDisplayLink == nil {
-                self.progressObjectDisplayLink = CADisplayLink(target: self, selector: #selector(updateProgressFromProgressObject))
+            if progressObjectDisplayLink == nil {
+                progressObjectDisplayLink = CADisplayLink(target: self, selector: #selector(updateProgressFromProgressObject))
             }
         } else {
-            self.progressObjectDisplayLink = nil
+            progressObjectDisplayLink = nil
         }
     }
 
@@ -741,8 +741,8 @@ public class MBProgressHUDSwift: UIView {
 
     private func updateForCurrentOrientation(animated: Bool = true) {
         // Stay in sync with the superview
-        if let superView = self.superview {
-            self.bounds = superView.bounds
+        if let superView = superview {
+            bounds = superView.bounds
         }
     }
 
