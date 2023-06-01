@@ -15,6 +15,8 @@
 		BD4774682A26B1FD0077D261 /* MBProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */; };
 		BD47746C2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */; };
 		BD47746D2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */; };
+		BD47746F2A2933C40077D261 /* MBBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746E2A2933C40077D261 /* MBBackgroundView.swift */; };
+		BD4774702A2933C40077D261 /* MBBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746E2A2933C40077D261 /* MBBackgroundView.swift */; };
 		D286A74D1518C70F00E13FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D286A74C1518C70F00E13FB8 /* Foundation.framework */; };
 		D286A7531518C70F00E13FB8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D286A7521518C70F00E13FB8 /* MBProgressHUD.m */; };
 		D286A75E1518C89600E13FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D286A75D1518C89600E13FB8 /* UIKit.framework */; };
@@ -42,6 +44,7 @@
 		1D104D951ACA376200973364 /* Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Framework-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBProgressHUD.swift; sourceTree = "<group>"; };
 		BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBProgressHUDRoundedButton.swift; sourceTree = "<group>"; };
+		BD47746E2A2933C40077D261 /* MBBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBBackgroundView.swift; sourceTree = "<group>"; };
 		D286A7491518C70F00E13FB8 /* libMBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMBProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D286A74C1518C70F00E13FB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D286A7511518C70F00E13FB8 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
@@ -93,6 +96,7 @@
 			children = (
 				BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */,
 				BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */,
+				BD47746E2A2933C40077D261 /* MBBackgroundView.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -276,6 +280,7 @@
 			files = (
 				BD47746D2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */,
 				1777D3E81D757B6E0037C7F1 /* MBProgressHUD.m in Sources */,
+				BD4774702A2933C40077D261 /* MBBackgroundView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +291,7 @@
 				1D104D931ACA371400973364 /* MBProgressHUD.m in Sources */,
 				BD4774682A26B1FD0077D261 /* MBProgressHUD.swift in Sources */,
 				BD47746C2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */,
+				BD47746F2A2933C40077D261 /* MBBackgroundView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
