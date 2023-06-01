@@ -246,27 +246,27 @@ public class MBProgressHUDSwift: UIView {
         }
     }
 
-    private var width: CGFloat      = 0.0
-    private var height: CGFloat     = 0.0
+    private var width: CGFloat = 0.0
+    private var height: CGFloat = 0.0
     private var indicator: UIView?
-    private var topSpacer           = UIView()
-    private var bottomSpacer        = UIView()
+    private var topSpacer = UIView()
+    private var bottomSpacer = UIView()
     private var graceTimer: Timer?
     private var minShowTimer: Timer?
     private var hideDelayedTimer: Timer?
     private var showStarted: Date?
-    private var isFinished          = false
+    private var isFinished  = false
     private var rotationTransform: CGAffineTransform?
-    private var bezelView           = MBBackgroundView()
-    private var backgroundView      = MBBackgroundView()
-    private var bezelConstraints    = [NSLayoutConstraint]()
-    private var paddingConstraints  = [NSLayoutConstraint]()
-    private var useAnimation        = false
+    private var bezelView = MBBackgroundView()
+    private var backgroundView = MBBackgroundView()
+    private var bezelConstraints = [NSLayoutConstraint]()
+    private var paddingConstraints = [NSLayoutConstraint]()
+    private var useAnimation = false
 
     // MARK: - - Constants
-    private let MBPadding: CGFloat               = 4.0
-    private let MBLabelFontSize: CGFloat         = 16.0
-    private let MBDetailLabelFontSize: CGFloat   = 12.0
+    private let MBPadding: CGFloat = 4.0
+    private let MBLabelFontSize: CGFloat = 16.0
+    private let MBDetailLabelFontSize: CGFloat = 12.0
 
     // MARK: - - Static Class methods
     static func showHUDAddedTo(_ view: UIView, animated: Bool = true) -> MBProgressHUD {
@@ -353,8 +353,8 @@ public class MBProgressHUDSwift: UIView {
     // MARK: - - Lifecycle methods
     required init?(coder aDecoder: NSCoder) {
         // Set default values for properties
-        mode                = .MBProgressHUDModeIndeterminate
-        progress            = 0
+        mode = .MBProgressHUDModeIndeterminate
+        progress = 0
 
         super.init(coder: aDecoder)
 
@@ -364,8 +364,8 @@ public class MBProgressHUDSwift: UIView {
 
     override init(frame: CGRect) {
         // Set default values for properties
-        mode                = .MBProgressHUDModeIndeterminate
-        progress            = 0
+        mode = .MBProgressHUDModeIndeterminate
+        progress = 0
 
         super.init(frame: frame)
 
@@ -583,7 +583,7 @@ public class MBProgressHUDSwift: UIView {
     // MARK: - - Layout
     override
     public func updateConstraints() {
-        let metrics             = ["margin": margin] as [String: CGFloat]
+        let metrics = ["margin": margin] as [String: CGFloat]
         //
         // Remove existing constraints
         removeConstraints(constraints)
@@ -618,10 +618,8 @@ public class MBProgressHUDSwift: UIView {
         // Minimum bezel size, if set
         if !(minSize == CGSize.zero) {
             var bezelSize = [NSLayoutConstraint]()
-            bezelSize.append(NSLayoutConstraint(item: bezelView, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: nil,
-                                              attribute: .notAnAttribute, multiplier: 1, constant: minSize.width))
-            bezelSize.append(NSLayoutConstraint(item: bezelView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil,
-                                                attribute: .notAnAttribute, multiplier: 1, constant: minSize.height))
+            bezelSize.append(NSLayoutConstraint(item: bezelView, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: minSize.width))
+            bezelSize.append(NSLayoutConstraint(item: bezelView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: minSize.height))
             applyPriority(priority: UILayoutPriority(rawValue: 997), toConstraints: bezelSize)
             bezelConstraints.append(contentsOf: bezelSize)
         }
@@ -636,10 +634,8 @@ public class MBProgressHUDSwift: UIView {
         }
 
         // Top and bottom spacing
-        topSpacer.addConstraint(NSLayoutConstraint(item: topSpacer, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil,
-                                                   attribute: .notAnAttribute, multiplier: 1, constant: margin))
-        bottomSpacer.addConstraint(NSLayoutConstraint(item: bottomSpacer, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil,
-                                                      attribute: .notAnAttribute, multiplier: 1, constant: margin))
+        topSpacer.addConstraint(NSLayoutConstraint(item: topSpacer, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil,  attribute: .notAnAttribute, multiplier: 1, constant: margin))
+        bottomSpacer.addConstraint(NSLayoutConstraint(item: bottomSpacer, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: margin))
 
         // Top and bottom spaces should be equal
         bezelConstraints.append(NSLayoutConstraint(item: topSpacer, attribute: .height, relatedBy: .equal,
@@ -658,8 +654,7 @@ public class MBProgressHUDSwift: UIView {
             bezelConstraints.append(NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal,
                                                        toItem: bezelView, attribute: .centerX, multiplier: 1, constant: 0))
             // Ensure the minimum edge margin is kept
-            bezelConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "|-(>=margin)-[view]-(>=margin)-|",
-                                                                               metrics: metrics, views: ["view": view]))
+            bezelConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "|-(>=margin)-[view]-(>=margin)-|", metrics: metrics, views: ["view": view]))
             // Element spacing
             if idx == 0 {
                 // First, ensure spacing to bezel edge
@@ -978,16 +973,16 @@ public class MBProgressHUDSwift: UIView {
 
     private func commonInit() {
 
-        autoresizingMask   = [.flexibleTopMargin,
-                              .flexibleBottomMargin,
-                              .flexibleLeftMargin,
-                              .flexibleRightMargin]
+        autoresizingMask = [.flexibleTopMargin,
+                            .flexibleBottomMargin,
+                            .flexibleLeftMargin,
+                            .flexibleRightMargin]
         // Set some other properties now that 'super' has run.
-        backgroundColor         = .clear
-        alpha                   = 0.0
-        isOpaque                = false
-        rotationTransform       = CGAffineTransform.identity
-        autoresizingMask        = [.flexibleWidth, .flexibleHeight]
+        backgroundColor = .clear
+        alpha = 0.0
+        isOpaque = false
+        rotationTransform = CGAffineTransform.identity
+        autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(statusBarOrientationDidChange),

@@ -47,27 +47,27 @@ class MBBarProgressView: UIView {
 
     // MARK: - -  Lifecycle
     override init(frame: CGRect) {
-        self.lineColor                  = .white
-        self.progressColor              = .white
-        self.progressRemainingColor     = .clear
-        self.progress                   = 0
+        self.lineColor = .white
+        self.progressColor = .white
+        self.progressRemainingColor = .clear
+        self.progress  = 0
 
         super.init(frame: frame)
 
-        backgroundColor                 = .clear
-        isOpaque                        = false
+        backgroundColor = .clear
+        isOpaque = false
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self.lineColor                  = .white
-        self.progressColor              = .white
-        self.progressRemainingColor     = .clear
-        self.progress                   = 0
+        self.lineColor = .white
+        self.progressColor = .white
+        self.progressRemainingColor = .clear
+        self.progress  = 0
 
         super.init(coder: aDecoder)
 
-        backgroundColor                 = .clear
-        isOpaque                        = false
+        backgroundColor = .clear
+        isOpaque = false
     }
 
     override var intrinsicContentSize: CGSize {
