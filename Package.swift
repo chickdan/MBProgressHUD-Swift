@@ -12,7 +12,7 @@ let package = Package(
             dependencies: [],
             path: ".",
             exclude: ["Demo"],
-            sources: ["MBProgressHUD.h", "MBProgressHUD.m"],
+            sources: ["Sources"],
             publicHeadersPath: "include"
         )
     ]

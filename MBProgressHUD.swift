@@ -108,7 +108,7 @@ public class MBProgressHUDSwift: UIView {
     public var label = UILabel()
     public var detailsLabel = UILabel()
     public var opacity: CGFloat = 1.0
-    public  var margin: CGFloat = 20.0 {
+    public var margin: CGFloat = 20.0 {
         didSet {
             dispatchOnMainThread {
                 self.setNeedsUpdateConstraints()
