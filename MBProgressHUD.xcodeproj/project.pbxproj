@@ -12,16 +12,8 @@
 		1777D3E81D757B6E0037C7F1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D286A7521518C70F00E13FB8 /* MBProgressHUD.m */; };
 		1D104D931ACA371400973364 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D286A7521518C70F00E13FB8 /* MBProgressHUD.m */; };
 		1D104D941ACA373100973364 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = D286A7511518C70F00E13FB8 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BD4774682A26B1FD0077D261 /* MBProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */; };
-		BD47746C2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */; };
-		BD47746D2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */; };
-		BD47746F2A2933C40077D261 /* MBBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746E2A2933C40077D261 /* MBBackgroundView.swift */; };
-		BD4774702A2933C40077D261 /* MBBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD47746E2A2933C40077D261 /* MBBackgroundView.swift */; };
-		BD4774722A2933FA0077D261 /* MBBarProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774712A2933FA0077D261 /* MBBarProgressView.swift */; };
-		BD4774732A2933FA0077D261 /* MBBarProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774712A2933FA0077D261 /* MBBarProgressView.swift */; };
-		BD4774752A29343D0077D261 /* MBRoundProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774742A29343D0077D261 /* MBRoundProgressView.swift */; };
-		BD4774762A29343D0077D261 /* MBRoundProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774742A29343D0077D261 /* MBRoundProgressView.swift */; };
-		BD4774772A2934EC0077D261 /* MBProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */; };
+		BD1E91DE2A3138220073648D /* Sources in Resources */ = {isa = PBXBuildFile; fileRef = BD1E91DD2A3138220073648D /* Sources */; };
+		BD1E91DF2A3138220073648D /* Sources in Resources */ = {isa = PBXBuildFile; fileRef = BD1E91DD2A3138220073648D /* Sources */; };
 		D286A74D1518C70F00E13FB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D286A74C1518C70F00E13FB8 /* Foundation.framework */; };
 		D286A7531518C70F00E13FB8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D286A7521518C70F00E13FB8 /* MBProgressHUD.m */; };
 		D286A75E1518C89600E13FB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D286A75D1518C89600E13FB8 /* UIKit.framework */; };
@@ -47,11 +39,7 @@
 		1777D3E21D757AF50037C7F1 /* Framework-tvOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Framework-tvOS-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1D104D7A1ACA36CC00973364 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D104D951ACA376200973364 /* Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Framework-Info.plist"; sourceTree = SOURCE_ROOT; };
-		BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBProgressHUD.swift; sourceTree = "<group>"; };
-		BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBProgressHUDRoundedButton.swift; sourceTree = "<group>"; };
-		BD47746E2A2933C40077D261 /* MBBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBBackgroundView.swift; sourceTree = "<group>"; };
-		BD4774712A2933FA0077D261 /* MBBarProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBBarProgressView.swift; sourceTree = "<group>"; };
-		BD4774742A29343D0077D261 /* MBRoundProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBRoundProgressView.swift; sourceTree = "<group>"; };
+		BD1E91DD2A3138220073648D /* Sources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sources; sourceTree = "<group>"; };
 		D286A7491518C70F00E13FB8 /* libMBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMBProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D286A74C1518C70F00E13FB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D286A7511518C70F00E13FB8 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
@@ -98,18 +86,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BD47746A2A2933680077D261 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				BD4774672A26B1AE0077D261 /* MBProgressHUD.swift */,
-				BD47746B2A29338F0077D261 /* MBProgressHUDRoundedButton.swift */,
-				BD47746E2A2933C40077D261 /* MBBackgroundView.swift */,
-				BD4774712A2933FA0077D261 /* MBBarProgressView.swift */,
-				BD4774742A29343D0077D261 /* MBRoundProgressView.swift */,
-			);
-			name = Sources;
-			sourceTree = "<group>";
-		};
 		D286A73E1518C70E00E13FB8 = {
 			isa = PBXGroup;
 			children = (
@@ -142,7 +118,7 @@
 		D286A74E1518C70F00E13FB8 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				BD47746A2A2933680077D261 /* Sources */,
+				BD1E91DD2A3138220073648D /* Sources */,
 				D286A7511518C70F00E13FB8 /* MBProgressHUD.h */,
 				D286A7521518C70F00E13FB8 /* MBProgressHUD.m */,
 				1315DD72178044770032507D /* Supporting Files */,
@@ -270,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD1E91DF2A3138220073648D /* Sources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD1E91DE2A3138220073648D /* Sources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,12 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD47746D2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */,
-				BD4774772A2934EC0077D261 /* MBProgressHUD.swift in Sources */,
 				1777D3E81D757B6E0037C7F1 /* MBProgressHUD.m in Sources */,
-				BD4774732A2933FA0077D261 /* MBBarProgressView.swift in Sources */,
-				BD4774762A29343D0077D261 /* MBRoundProgressView.swift in Sources */,
-				BD4774702A2933C40077D261 /* MBBackgroundView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,12 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD4774722A2933FA0077D261 /* MBBarProgressView.swift in Sources */,
-				BD4774752A29343D0077D261 /* MBRoundProgressView.swift in Sources */,
 				1D104D931ACA371400973364 /* MBProgressHUD.m in Sources */,
-				BD4774682A26B1FD0077D261 /* MBProgressHUD.swift in Sources */,
-				BD47746C2A29338F0077D261 /* MBProgressHUDRoundedButton.swift in Sources */,
-				BD47746F2A2933C40077D261 /* MBBackgroundView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
