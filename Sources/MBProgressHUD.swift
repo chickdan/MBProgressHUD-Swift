@@ -49,7 +49,7 @@ public protocol MBProgressHUDDelegate: AnyObject {
  */
 
 // TODO: Temporary name until swift version is production ready
-public class MBProgressHUDSwift: UIView {
+public class MBProgressHUD: UIView {
 
     public enum MBProgressHUDMode {
         /// UIActivityIndicatorView.
