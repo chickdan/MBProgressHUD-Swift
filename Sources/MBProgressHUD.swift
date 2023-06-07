@@ -33,7 +33,7 @@ import UIKit
 public typealias MBProgressHUDCompletionBlock = () -> Void
 
 public protocol MBProgressHUDDelegate: AnyObject {
-    func hudWasHidden(hud: MBProgressHUDSwift)
+    func hudWasHidden(hud: MBProgressHUD)
 }
 
 /**
