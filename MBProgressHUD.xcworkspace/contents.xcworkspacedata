@@ -2,21 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:MBProgressHUD.xcodeproj">
+      location = "group:MBProgressHUD">
    </FileRef>
    <FileRef
       location = "group:Demo/HudDemo.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:LICENSE">
-   </FileRef>
-   <FileRef
-      location = "group:MBProgressHUD.podspec">
-   </FileRef>
-   <FileRef
-      location = "group:README.md">
-   </FileRef>
-   <FileRef
-      location = "group:Package.swift">
    </FileRef>
 </Workspace>
