@@ -5,6 +5,9 @@
       location = "group:MBProgressHUD">
    </FileRef>
    <FileRef
+      location = "group:Demo/HudDemoSwift/HudDemoSwift.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Demo/HudDemo.xcodeproj">
    </FileRef>
    <FileRef
