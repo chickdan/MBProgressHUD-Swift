@@ -48,7 +48,6 @@ public protocol MBProgressHUDDelegate: AnyObject {
  * @note Swift implementation drops support for pre-ios7 and deprecated features from the MBProgressHUD v1.0
  */
 
-// TODO: Temporary name until swift version is production ready
 public class MBProgressHUD: UIView {
 
     public enum MBProgressHUDMode {
@@ -269,7 +268,7 @@ public class MBProgressHUD: UIView {
     private let MBDetailLabelFontSize: CGFloat = 12.0
 
     // MARK: - - Static Class methods
-    static func showHUDAddedTo(_ view: UIView, animated: Bool = true) -> MBProgressHUD {
+    public static func showHUDAddedTo(_ view: UIView, animated: Bool = true) -> MBProgressHUD {
         /**
          * Creates a new HUD, adds it to provided view and shows it. The counterpart to this method is hideHUDForView:animated:.
          *
@@ -290,7 +289,7 @@ public class MBProgressHUD: UIView {
         return hud
     }
 
-    static func hiddenHUDAddedTo(_ view: UIView) -> MBProgressHUD {
+    public static func hiddenHUDAddedTo(_ view: UIView) -> MBProgressHUD {
         /**
          * Creates a new HUD, adds it to provided view and does NOT show it. The counterpart to this method is hideHUDForView:animated:.
          *
@@ -310,7 +309,7 @@ public class MBProgressHUD: UIView {
         return hud
     }
 
-    static func hideHUDFor(_ view: UIView, animated: Bool = true) -> Bool {
+    public static func hideHUDFor(_ view: UIView, animated: Bool = true) -> Bool {
         /**
          * Finds the top-most HUD subview and hides it. The counterpart to this method is showHUDAddedTo:animated:.
          *
@@ -334,7 +333,7 @@ public class MBProgressHUD: UIView {
         return false
     }
 
-    static func HUDFor(_ view: UIView) -> MBProgressHUD? {
+    public static func HUDFor(_ view: UIView) -> MBProgressHUD? {
         /**
          * Finds the top-most HUD subview and returns it.
          *
@@ -351,7 +350,8 @@ public class MBProgressHUD: UIView {
     }
 
     // MARK: - - Lifecycle methods
-    required init?(coder aDecoder: NSCoder) {
+    required
+    public init?(coder aDecoder: NSCoder) {
         // Set default values for properties
         mode = .MBProgressHUDModeIndeterminate
         progress = 0
@@ -362,7 +362,8 @@ public class MBProgressHUD: UIView {
         commonInit()
     }
 
-    override init(frame: CGRect) {
+    override
+    public init(frame: CGRect) {
         // Set default values for properties
         mode = .MBProgressHUDModeIndeterminate
         progress = 0
@@ -379,7 +380,8 @@ public class MBProgressHUD: UIView {
         super.removeFromSuperview()
     }
 
-    convenience init(view: UIView) {
+    convenience
+    public init(view: UIView) {
         /**
          * A convenience constructor that initializes the HUD with the view's bounds. Calls the designated constructor with
          * view.bounds as the parameter.
