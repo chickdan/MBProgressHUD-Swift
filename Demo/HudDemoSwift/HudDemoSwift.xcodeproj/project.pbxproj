@@ -15,6 +15,7 @@
 		BD2613E22A36686A00CD70A4 /* HudDemoSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2613E12A36686A00CD70A4 /* HudDemoSwiftTests.swift */; };
 		BD2613EC2A36686A00CD70A4 /* HudDemoSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2613EB2A36686A00CD70A4 /* HudDemoSwiftUITests.swift */; };
 		BD2613EE2A36686A00CD70A4 /* HudDemoSwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2613ED2A36686A00CD70A4 /* HudDemoSwiftUITestsLaunchTests.swift */; };
+		BDCC01122A396556002D0837 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BDCC01112A396556002D0837 /* MBProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +48,6 @@
 		BD2613E72A36686A00CD70A4 /* HudDemoSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HudDemoSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD2613EB2A36686A00CD70A4 /* HudDemoSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudDemoSwiftUITests.swift; sourceTree = "<group>"; };
 		BD2613ED2A36686A00CD70A4 /* HudDemoSwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudDemoSwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BD2613FB2A3669B800CD70A4 /* MBProgressHUD-Swift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "MBProgressHUD-Swift"; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDCC01122A396556002D0837 /* MBProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,11 +79,11 @@
 		BD2613BE2A36686A00CD70A4 = {
 			isa = PBXGroup;
 			children = (
-				BD2613FA2A3669B800CD70A4 /* Packages */,
 				BD2613C92A36686A00CD70A4 /* HudDemoSwift */,
 				BD2613E02A36686A00CD70A4 /* HudDemoSwiftTests */,
 				BD2613EA2A36686A00CD70A4 /* HudDemoSwiftUITests */,
 				BD2613C82A36686A00CD70A4 /* Products */,
+				BDCC01102A396556002D0837 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,12 +127,11 @@
 			path = HudDemoSwiftUITests;
 			sourceTree = "<group>";
 		};
-		BD2613FA2A3669B800CD70A4 /* Packages */ = {
+		BDCC01102A396556002D0837 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BD2613FB2A3669B800CD70A4 /* MBProgressHUD-Swift */,
 			);
-			name = Packages;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +150,9 @@
 			dependencies = (
 			);
 			name = HudDemoSwift;
+			packageProductDependencies = (
+				BDCC01112A396556002D0837 /* MBProgressHUD */,
+			);
 			productName = HudDemoSwift;
 			productReference = BD2613C72A36686A00CD70A4 /* HudDemoSwift.app */;
 			productType = "com.apple.product-type.application";
@@ -592,6 +595,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BDCC01112A396556002D0837 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MBProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BD2613BF2A36686A00CD70A4 /* Project object */;
 }
