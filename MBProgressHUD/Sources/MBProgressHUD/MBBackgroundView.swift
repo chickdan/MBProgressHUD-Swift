@@ -13,7 +13,7 @@ class MBBackgroundView: UIView {
     /**
      * The background color or the blur tint color.
      */
-    var color: UIColor {
+    public var color: UIColor {
         didSet {
             backgroundColor = color
             if color == .clear {
