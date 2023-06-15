@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MBBarProgressView: UIView {
+public class MBBarProgressView: UIView {
     /**
      * Progress (0.0 to 1.0)
      */
-    var progress: Double {
+    public var progress: Double {
         didSet {
             setNeedsDisplay()
         }
@@ -21,7 +21,7 @@ class MBBarProgressView: UIView {
     /**
      * Bar border line color. Defaults to .white
      */
-    var lineColor: UIColor? {
+    public var lineColor: UIColor? {
         didSet {
             setNeedsDisplay()
         }
@@ -30,7 +30,7 @@ class MBBarProgressView: UIView {
     /**
      * Bar background color. Defaults to .clear
      */
-    var progressRemainingColor: UIColor {
+    public var progressRemainingColor: UIColor {
         didSet {
             setNeedsDisplay()
         }
@@ -39,7 +39,7 @@ class MBBarProgressView: UIView {
     /**
      * Bar progress color. Defaults to .white
      */
-    var progressColor: UIColor? {
+    public var progressColor: UIColor? {
         didSet {
             setNeedsDisplay()
         }
@@ -70,11 +70,13 @@ class MBBarProgressView: UIView {
         isOpaque = false
     }
 
-    override var intrinsicContentSize: CGSize {
+    override
+    public var intrinsicContentSize: CGSize {
         return CGSize(width: 120, height: 10)
     }
 
-    override func draw(_ rect: CGRect) {
+    override
+    public func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
 
         lineColor?.setStroke()
