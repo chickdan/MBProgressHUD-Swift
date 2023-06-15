@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MBBarProgressView: UIView {
+public class MBBarProgressView: UIView {
     /**
      * Progress (0.0 to 1.0)
      */
@@ -70,11 +70,13 @@ class MBBarProgressView: UIView {
         isOpaque = false
     }
 
-    override var intrinsicContentSize: CGSize {
+    override
+    public var intrinsicContentSize: CGSize {
         return CGSize(width: 120, height: 10)
     }
 
-    override func draw(_ rect: CGRect) {
+    override
+    public func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
 
         lineColor?.setStroke()

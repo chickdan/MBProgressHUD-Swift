@@ -256,8 +256,8 @@ public class MBProgressHUD: UIView {
     private var showStarted: Date?
     private var isFinished  = false
     private var rotationTransform: CGAffineTransform?
-    private var bezelView = MBBackgroundView()
-    private var backgroundView = MBBackgroundView()
+    public var bezelView = MBBackgroundView()
+    public var backgroundView = MBBackgroundView()
     private var bezelConstraints = [NSLayoutConstraint]()
     private var paddingConstraints = [NSLayoutConstraint]()
     private var useAnimation = false
@@ -812,68 +812,29 @@ public class MBProgressHUD: UIView {
         button.setTitleColor(forColor, for: .normal)
 
         var newColor = forColor
-        if activityIndicatorColor != nil {
-            newColor = activityIndicatorColor!
+        if let color = activityIndicatorColor {
+            newColor = color
         }
 
         // UIAppearance settings are prioritized. If they are preset the set color is ignored.
         switch indicator {
         case is UIActivityIndicatorView:
-            if #available(iOS 9.0, *) {
-                let appearance = UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self])
-                if appearance.color == nil {
-                    if let progress = indicator as? UIActivityIndicatorView {
-                        progress.color = newColor
-                    }
-                }
-            } else {
-                // Fallback on earlier versions
-                // TODO: Add back support for appearance for pre-OS 9?
+            let appearance = UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self])
+            if appearance.color == nil {
                 if let progress = indicator as? UIActivityIndicatorView {
                     progress.color = newColor
                 }
             }
-
         case is MBRoundProgressView:
-            if #available(iOS 9.0, *) {
-                let appearance = MBRoundProgressView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self])
-                if let progress = indicator as? MBRoundProgressView {
-                    if appearance.progressTintColor == nil {
-                        progress.progressTintColor = newColor
-                    }
-                    if appearance.backgroundTintColor == nil {
-                        progress.backgroundTintColor = newColor
-                    }
-                }
-            } else {
-                // Fallback on earlier versions
-                // TODO: Add back support for appearance for pre-OS 9?
-                if let progress = indicator as? MBRoundProgressView {
-                    progress.progressTintColor = newColor
-                    progress.backgroundTintColor = newColor
-                }
+            if let progress = indicator as? MBRoundProgressView {
+                progress.progressTintColor = newColor
+                progress.backgroundTintColor = newColor
             }
-
         case is MBBarProgressView:
-            if #available(iOS 9.0, *) {
-                let appearance = MBBarProgressView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self])
-                if let progress = indicator as? MBBarProgressView {
-                    if appearance.progressColor == nil {
-                        progress.progressColor = newColor
-                    }
-                    if appearance.lineColor == nil {
-                        progress.lineColor = newColor
-                    }
-                }
-            } else {
-                // Fallback on earlier versions
-                // TODO: Add back support for appearance for pre-OS 9?
-                if let progress = indicator as? MBBarProgressView {
-                    progress.progressColor = newColor
-                    progress.lineColor = newColor
-                }
+            if let progress = indicator as? MBBarProgressView {
+                progress.progressColor = newColor
+                progress.lineColor = newColor
             }
-
         default:
             let selector = NSSelectorFromString("setTintColor:" )
             if (indicator?.responds(to: selector))! {
