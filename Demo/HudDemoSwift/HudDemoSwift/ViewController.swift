@@ -175,7 +175,8 @@ class ViewController: UITableViewController {
         
         switch example {
         case .special:
-            performSegue(withIdentifier: "special", sender: nil)
+//            performSegue(withIdentifier: "special", sender: nil)
+            break
         case .indeterminate:
             indeterminateExample()
         case .indeterminateLabel:
@@ -188,24 +189,24 @@ class ViewController: UITableViewController {
             annularDeterminateExample()
         case .determinateBar:
             barDeterminateExample()
-//        case .text:
-//            textExample()
-//        case .customView:
-//            customViewExample()
-//        case .actionButton:
-//            cancelationExample()
-//        case .modeSwitching:
-//            modeSwitchingExample()
-//        case .onWindow:
-//            windowExample()
-//        case .urlSession:
-//            networkingExample()
-//        case .determinateProgress:
-//            determinateProgressExample()
-//        case .dimBackground:
-//            dimBackgroundExample()
-//        case .colored:
-//            colorExample()
+        case .text:
+            textExample()
+        case .customView:
+            customViewExample()
+        case .actionButton:
+            cancelationExample()
+        case .modeSwitching:
+            modeSwitchingExample()
+        case .onWindow:
+            windowExample()
+        case .networking:
+            networkingExample()
+        case .determinateProgress:
+            determinateProgressExample()
+        case .dimBackground:
+            dimBackgroundExample()
+        case .colored:
+            colorExample()
         default:
             break
         }
@@ -306,6 +307,154 @@ extension ViewController {
             guard let self = self else { return }
             
             self.doSomeWorkWithProgress()
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+            }
+        }
+    }
+    
+    // MARK: - examples
+    func textExample() {
+        guard let rootView = navigationController?.view else { return }
+        
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        hud.mode = .MBProgressHUDModeText
+        hud.label.text = "在各种沟通场合"
+//        hud.bezelVectorialMargin = 16
+        let width = view.bounds.width * (1.0 / 3.0)
+//        hud.bezelHorizontalMargin = width / 2
+        hud.hide(animated: true, after: 3)
+    }
+    
+    
+    func customViewExample() {
+        guard let rootView = navigationController?.view else { return }
+        
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        hud.mode = .MBProgressHUDModeCustomView
+        
+        let image = UIImage(named: "Checkmark")
+        hud.customView = UIImageView(image: image)
+        hud.square = true
+        hud.label.text = "Progress Done"
+        
+        hud.hide(animated: true, after: 3)
+    }
+    
+    func cancelationExample() {
+        guard let rootView = navigationController?.view else { return }
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        hud.mode = .MBProgressHUDModeDeterminate
+        hud.button.setTitle("Cancel", for: .normal)
+        hud.button.addTarget(self, action: #selector(cancelWork(_:)), for: .touchUpInside)
+        
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let self = self else { return }
+            
+            self.doSomeWorkWithProgress()
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+            }
+        }
+    }
+    
+    func modeSwitchingExample() {
+        guard let rootView = navigationController?.view else { return }
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        hud.label.text = "Preparing..."
+        
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let self = self else { return }
+            
+            self.doSomeWorkWithMixedProgress(hud)
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+            }
+        }
+    }
+    
+    
+    //MARK: - examples
+    func windowExample() {
+        guard let rootView = self.view.window else { return }
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let self = self else { return }
+            
+            self.doSomeWork()
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+            }
+        }
+    }
+    
+    func networkingExample() {
+        guard let rootView = navigationController?.view else { return }
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        hud.label.text = "Preparing..."
+        
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let self = self else { return }
+            
+            self.doSomeWorkWithProgress()
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+            }
+        }
+        
+    }
+    
+    func determinateProgressExample() {
+        guard let rootView = navigationController?.view else { return }
+        
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        hud.mode = .MBProgressHUDModeDeterminate
+        hud.label.text = "Loading..."
+        
+        let progressObject = Progress(totalUnitCount: 100)
+        hud.progressObject = progressObject
+        
+        hud.button.setTitle("Cancel", for: .normal)
+        hud.button.addTarget(progressObject, action: NSSelectorFromString("cancel"), for: .touchUpInside)
+        
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let self = self else { return }
+            
+            self.doSomeWork(with: progressObject)
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+            }
+        }
+    }
+    
+    func dimBackgroundExample() {
+        guard let rootView = navigationController?.view else { return }
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        
+        hud.backgroundView.style = .solidColor
+        hud.backgroundView.color = UIColor.black.withAlphaComponent(0.1)
+        
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let self = self else { return }
+            
+            self.doSomeWork()
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+            }
+        }
+    }
+    
+    func colorExample() {
+        guard let rootView = navigationController?.view else { return }
+        let hud = MBProgressHUD.showHUDAddedTo(rootView, animated: true)
+        
+        hud.contentColor = UIColor.red
+        hud.label.text = "Loading..."
+        
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let self = self else { return }
+            
+            self.doSomeWork()
             DispatchQueue.main.async {
                 hud.hide(animated: true)
             }
