@@ -836,9 +836,8 @@ public class MBProgressHUD: UIView {
                 progress.lineColor = newColor
             }
         default:
-            let selector = NSSelectorFromString("setTintColor:" )
-            if (indicator?.responds(to: selector))! {
-                _ = indicator?.perform(selector, with: newColor)
+            if let progress = indicator as? MBBarProgressView {
+                progress.tintColor = newColor
             }
         }
     }
@@ -922,9 +921,8 @@ public class MBProgressHUD: UIView {
 
         indicator?.translatesAutoresizingMaskIntoConstraints = false
 
-        let selector = NSSelectorFromString("setProgress:" )
-        if (indicator?.responds(to: selector))! {
-            _ = indicator?.perform(selector, with: progress)
+        if let indicator = indicator as? MBBarProgressView {
+            indicator.progress = progress
         }
 
         indicator?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .horizontal)
