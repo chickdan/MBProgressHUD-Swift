@@ -25,6 +25,10 @@ class MBRoundProgressView: UIView {
         }
     }
 
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 37, height: 37)
+    }
+
     /**
      * Display mode - false = round or true = annular. Defaults to round.
      */
