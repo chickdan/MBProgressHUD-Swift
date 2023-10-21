@@ -192,6 +192,8 @@ public class MBProgressHUD: UIView {
         didSet {
             if let indicator = indicator as? MBRoundProgressView {
                 indicator.progress = progress
+            } else if let indicator = indicator as? MBBarProgressView {
+                indicator.progress = progress
             }
         }
     }
@@ -915,10 +917,6 @@ public class MBProgressHUD: UIView {
         }
 
         indicator?.translatesAutoresizingMaskIntoConstraints = false
-
-        if let indicator = indicator as? MBBarProgressView {
-            indicator.progress = progress
-        }
 
         indicator?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .horizontal)
         indicator?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .vertical)
