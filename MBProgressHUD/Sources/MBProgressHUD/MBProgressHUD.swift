@@ -823,7 +823,7 @@ public class MBProgressHUD: UIView {
         case is MBRoundProgressView:
             if let progress = indicator as? MBRoundProgressView {
                 progress.progressTintColor = newColor
-                progress.backgroundTintColor = newColor
+                progress.backgroundTintColor = newColor.withAlphaComponent(0.1)
             }
         case is MBBarProgressView:
             if let progress = indicator as? MBBarProgressView {
