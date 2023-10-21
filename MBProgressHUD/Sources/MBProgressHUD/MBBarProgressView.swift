@@ -88,7 +88,7 @@ public class MBBarProgressView: UIView {
         let makePath = {
             context?.move(to: CGPoint(x: 2, y: rect.size.height/2))
             context?.addArc(tangent1End: CGPoint(x: 2, y: 2),
-                            tangent2End: CGPoint(x: radius, y: radius+2), radius: radius)
+                            tangent2End: CGPoint(x: radius + 2, y: 2), radius: radius)
             context?.addLine(to: CGPoint(x: rect.size.width - radius - 2, y: 2))
             context?.addArc(tangent1End: CGPoint(x: rect.size.width - 2, y: 2),
                             tangent2End: CGPoint(x: rect.size.width - 2, y: rect.size.height / 2), radius: radius)
