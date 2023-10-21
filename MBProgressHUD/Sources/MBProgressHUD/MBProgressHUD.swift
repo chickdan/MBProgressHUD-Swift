@@ -190,13 +190,8 @@ public class MBProgressHUD: UIView {
 
     public var progress: CGFloat {
         didSet {
-            if mode == .MBProgressHUDModeDeterminate {
-                dispatchOnMainThread {
-                    let selector = NSSelectorFromString("setProgress:")
-                    if (self.indicator?.responds(to: selector))! {
-                        self.indicator!.perform(selector, with: self.progress)
-                    }
-                }
+            if let indicator = indicator as? MBRoundProgressView {
+                indicator.progress = progress
             }
         }
     }
