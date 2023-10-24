@@ -45,13 +45,13 @@ You will need the latest developer tools in order to build `MBProgressHUD-Swift`
 ### SwiftPM / Accio
 
 1. Add the following to your `Package.swift`:
-	```swift
-	.package(url: "https://github.com/chickdan/MBProgressHUD-Swift.git", .upToNextMajor(from: "1.2.0")),
-	```
+    ```swift
+    .package(url: "https://github.com/chickdan/MBProgressHUD-Swift.git", .upToNextMajor(from: "1.2.0")),
+    ```
 2. Next, add `MBProgressHUD` to your App targets dependencies like so:
-	```swift
-	.target(name: "App", dependencies: ["MBProgressHUD"]),
-	```
+    ```swift
+    .target(name: "App", dependencies: ["MBProgressHUD"]),
+    ```
 3. Then open your project in Xcode 11+ (SwiftPM) or run `accio update` (Accio).
 
 ### Source files
@@ -78,10 +78,10 @@ The main guideline you need to follow when dealing with MBProgressHUD while runn
 ```objective-c
 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-	// Do something...
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[MBProgressHUD hideHUDForView:self.view animated:YES];
-	});
+    // Do something...
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 });
 ```
 
@@ -94,9 +94,9 @@ MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 hud.mode = MBProgressHUDModeAnnularDeterminate;
 hud.label.text = @"Loading";
 [self doSomethingInBackgroundWithProgressCallback:^(float progress) {
-	hud.progress = progress;
+    hud.progress = progress;
 } completionCallback:^{
-	[hud hideAnimated:YES];
+    [hud hideAnimated:YES];
 }];
 ```
 
@@ -107,7 +107,7 @@ MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 hud.mode = MBProgressHUDModeAnnularDeterminate;
 hud.label.text = @"Loading";
 NSProgress *progress = [self doSomethingInBackgroundCompletion:^{
-	[hud hideAnimated:YES];
+    [hud hideAnimated:YES];
 }];
 hud.progressObject = progress;
 ```
@@ -120,8 +120,8 @@ If you need to run your long-running task in the main thread, you should perform
 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-	// Do something...
-	[MBProgressHUD hideHUDForView:self.view animated:YES];
+    // Do something...
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 });
 ```
 

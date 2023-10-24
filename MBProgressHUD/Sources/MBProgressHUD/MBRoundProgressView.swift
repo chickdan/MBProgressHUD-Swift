@@ -9,26 +9,30 @@
 import UIKit
 
 class MBRoundProgressView: UIView {
-    var progress: CGFloat {
+    public var progress: CGFloat {
         didSet {
             setNeedsDisplay()
         }
     }
-    var progressTintColor: UIColor? {
+    public var progressTintColor: UIColor? {
         didSet {
             setNeedsDisplay()
         }
     }
-    var backgroundTintColor: UIColor? {
+    public var backgroundTintColor: UIColor? {
         didSet {
             setNeedsDisplay()
         }
     }
 
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 37, height: 37)
+    }
+
     /**
      * Display mode - false = round or true = annular. Defaults to round.
      */
-    var isAnnular: Bool {
+    public var isAnnular: Bool {
         didSet {
             setNeedsDisplay()
         }

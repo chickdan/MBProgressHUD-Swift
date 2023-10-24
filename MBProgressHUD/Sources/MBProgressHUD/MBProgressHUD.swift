@@ -190,13 +190,10 @@ public class MBProgressHUD: UIView {
 
     public var progress: CGFloat {
         didSet {
-            if mode == .MBProgressHUDModeDeterminate {
-                dispatchOnMainThread {
-                    let selector = NSSelectorFromString("setProgress:")
-                    if (self.indicator?.responds(to: selector))! {
-                        self.indicator!.perform(selector, with: self.progress)
-                    }
-                }
+            if let indicator = indicator as? MBRoundProgressView {
+                indicator.progress = progress
+            } else if let indicator = indicator as? MBBarProgressView {
+                indicator.progress = progress
             }
         }
     }
@@ -828,7 +825,7 @@ public class MBProgressHUD: UIView {
         case is MBRoundProgressView:
             if let progress = indicator as? MBRoundProgressView {
                 progress.progressTintColor = newColor
-                progress.backgroundTintColor = newColor
+                progress.backgroundTintColor = newColor.withAlphaComponent(0.1)
             }
         case is MBBarProgressView:
             if let progress = indicator as? MBBarProgressView {
@@ -836,9 +833,8 @@ public class MBProgressHUD: UIView {
                 progress.lineColor = newColor
             }
         default:
-            let selector = NSSelectorFromString("setTintColor:" )
-            if (indicator?.responds(to: selector))! {
-                _ = indicator?.perform(selector, with: newColor)
+            if let progress = indicator as? MBBarProgressView {
+                progress.tintColor = newColor
             }
         }
     }
@@ -921,11 +917,6 @@ public class MBProgressHUD: UIView {
         }
 
         indicator?.translatesAutoresizingMaskIntoConstraints = false
-
-        let selector = NSSelectorFromString("setProgress:" )
-        if (indicator?.responds(to: selector))! {
-            _ = indicator?.perform(selector, with: progress)
-        }
 
         indicator?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .horizontal)
         indicator?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .vertical)
